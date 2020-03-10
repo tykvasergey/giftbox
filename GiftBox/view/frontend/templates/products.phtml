@@ -1,0 +1,155 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+?>
+
+<div class="space-main">
+
+    <h2>Instructions</h2>
+
+    <ol class="space-instrucrtion">
+        <li>Select your gift box size</li>
+        <li>Select each of the products you want to add to your firft box</li>
+        <li><span>Optional:</span> add a gift message</li>
+        <li>Add to cart and checkout</li>
+    </ol>
+
+    <p><span>note:</span> click the <span>?</span> to see production information</p>
+
+    <div class="space-wrap">
+        <h2>Select your gift box</h2>
+        <div class="space-wrap-content parent">
+
+            <?php foreach ($block->getProductListParents() as $parent_product_id => $item): ?>
+                <div class="space-wrap-content-item">
+                    <div class="space-wrap-content-item-data"
+                         type_item ="parent"
+                         id_item="<?= $parent_product_id; ?>">
+                        <a href="javascript:void(0);"><?= $block->getProductNameById($parent_product_id); ?></a>
+                    </div>
+                    <span>Includes</span>
+                    <ul>
+                        <?php
+                        $quantities = $block->getQtyConfig();
+                        if($quantities[$parent_product_id]):
+                            foreach ($quantities[$parent_product_id] as $type_id => $qty): ?>
+                                <?php
+                                    $type = $block->getGiftBoxItemsById($type_id);
+                                    $typeLabel = $type['label'];
+                                ?>
+                                <li>x<?= $qty;?> <?= $typeLabel; ?> items</li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php if($block->getProductListChildren()): ?>
+        <div class="sections-types">
+        <?php foreach ($block->getProductListChildren() as $type_id => $group): ?>
+            <div class="space-block" id_type="<?=$type_id?>">
+                <?php $type = $block->getGiftBoxItemsById($type_id);?>
+                <h2 class="remaning" >You have <span><span class="qty-child" id_group="<?=$type_id?>">0</span> <?= $type['label']; ?> items</span> remaning</h2>
+                <div class="space-wrap">
+                    <h2><?= $type['label']; ?> gifts</h2>
+                    <div class="space-wrap-content child">
+                        <?php foreach ($group as $child_product_id => $product): ?>
+                            <div class="space-wrap-content-item"
+                                 type_item="child"
+                                 id_item="<?= $child_product_id; ?>"
+                                 id_type="<?=$type_id?>"
+                                 data-mage-init='{
+                                                "BroSolutions_GiftBox/js/giftbox":{
+                                                    "product_data": {
+                                                        "type_item": "child",
+                                                         "id_item": "<?= $child_product_id; ?>",
+                                                          "id_type": "<?=$type_id?>"
+                                                    }
+                                                }
+                                     }'>
+                                <div class="space-descr-wrap">
+                                    <div class="space-descr">
+                                        <strong class="descr-text">?</strong>
+                                        <span class="description-message"><?= $block->getProductDescriptionById($child_product_id); ?></span>
+                                    </div>
+                                    <div class="qty-product"></div>
+                                </div>
+                                <div
+                                     class="space-wrap-content-item-data"
+                                     type_item="child"
+                                     id_item="<?= $child_product_id; ?>"
+                                     id_type="<?=$type_id?>">
+                                     <img class="product-image-photo default_image"
+                                          width="150"
+                                          height="150"
+                                          src="<?php $image = $block->getProductImgUrlByProductId($child_product_id); echo $image["image_url"]; ?>"
+                                          alt="<?= $image["image_label"]; ?>" />
+
+                                    <div class="product details product-item-details">
+                                        <strong class="product name product-item-name">
+                                            <span><?= $block->getProductNameById($child_product_id); ?></span>
+                                        </strong>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <form class="space-form">
+        <div class="price-message">
+            <input type="checkbox" id="addmsg" name="addmsg">
+            <label for="addmsg">Add gift card message for <span></span></label>
+        </div>
+        <div class="msg-text" >
+            <h2>Add Gift Card Message</h2>
+            <span class="msg-err"></span>
+            <textarea maxlength="500"></textarea>
+        </div>
+
+        <?php echo $block->getBlockHtml('formkey')?>
+        <button class="action tocart primary"
+                type="button"
+                type_item="tocart"
+                url_submit="<?php echo $block->getUrl('giftboxajax/cart/add') ?>">Add to cart</button>
+    </form>
+
+</div>
+
+<?php $conf = [
+        'products'        => $block->getProductListConfig(),
+        'restriction_qty' => $block->getQtyConfig(),
+        'types'           => $block->getTypes(),
+        'urls'            => ['get_prods'          => $block->getUrl('giftboxajax/product/get')],
+        'edit_item_info'  => $block->getEditItemInfo(),
+      ];
+?>
+
+<script type="text/x-magento-init">
+    {
+        ".space-wrap-content.parent .space-wrap-content-item-data, button.tocart": {
+            "BroSolutions_GiftBox/js/giftbox": {
+                "conf": <?= json_encode($conf) ?>
+            }
+        }
+    }
+</script>

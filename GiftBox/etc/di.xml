@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="BroSolutions\GiftBox\Api\GiftBoxRepositoryInterface" type="BroSolutions\GiftBox\Model\GiftBoxRepository" />
+    <preference for="Magento\Quote\Model\Quote" type="BroSolutions\GiftBox\Model\Quote\Quote" />
+    <preference for="Magento\Framework\View\Element\RendererList" type="BroSolutions\GiftBox\Model\Renderer\RendererList" />
+    <preference for="Amasty\Checkout\Block\Onepage\LayoutProcessor" type="BroSolutions\GiftBox\Block\Onepage\LayoutProcessor" />
+    <type name="Magento\Quote\Model\Quote\Item\AbstractItem">
+        <plugin name="bro_giftbox_plugin_magento_quote_model_quote_item" type="BroSolutions\GiftBox\Plugin\Magento\Quote\Model\Quote\Item\AbstractItem" />
+    </type>
+</config>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog">
+            <tab>catalog</tab>
+<!--            <group id="giftbox" translate="label" type="text" sortOrder="2000" showInDefault="1" showInWebsite="1" showInStore="0">-->
+<!--                <label>Gift Box</label>-->
+<!--                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">-->
+<!--                    <label>Enable</label>-->
+<!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                </field>-->
+<!--                <field id="config" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">-->
+<!--                    <label>Extensions</label>-->
+<!--                    <backend_model>BroSolutions\GiftBox\Block\Adminhtml\Config\Backend\AdditionalItem</backend_model>-->
+<!--                    <frontend_model>BroSolutions\GiftBox\Block\Adminhtml\Config</frontend_model>-->
+<!--                </field>-->
+<!--            </group>-->
+        </section>
+    </system>
+</config>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="sales_order_tabs">
+            <action method="addTabAfter">
+                <argument name="name" xsi:type="string">giftbox_tab</argument>
+                <argument name="block" xsi:type="string">BroSolutions\GiftBox\Block\Adminhtml\OrderEdit\Tab\View</argument>
+                <argument name="after" xsi:type="string">order_history</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="default_order_items_renderer">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">BroSolutions_GiftBox::order/view/items/renderer/default.phtml</argument>
+            </action>
+        </referenceBlock>
+<!--        <block class="Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\DefaultRenderer" as="default" name="default_order_items_renderer" template="Magento_Sales::order/view/items/renderer/default.phtml">-->
+    </body>
+</page>

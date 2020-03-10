@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<section class="admin__page-section edit-order-comments">
+
+    <div class="edit-order-comments-block">
+        <div class="edit-order-comments-block-title">
+            <?= /* @escapeNotVerified */ __('GiftBox messages for this Order') ?>
+        </div>
+
+    </div>
+
+    <?php $messages = $block->getMessages(); ?>
+    <?php if(count($messages) > 0): ?>
+        <?php foreach ($messages as $message): ?>
+            <ol class="note-list">
+                <li><?= $message['product_id'], '. ', $message['message']?> </li>
+            </ol>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+</section>

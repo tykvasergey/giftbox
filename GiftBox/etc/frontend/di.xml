@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\CustomerData\AbstractItem">
+        <plugin name="bro_giftbox_plugin_magento_checkout_customerdata_cart" type="BroSolutions\GiftBox\Plugin\Magento\Checkout\CustomerData\Cart" />
+    </type>
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="bro_giftbox_plugin_magento_checkout_model_defaultconfigprovider" type="BroSolutions\GiftBox\Plugin\Magento\Checkout\Model\DefaultConfigProvider" />
+    </type>
+</config>

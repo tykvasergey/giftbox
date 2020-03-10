@@ -1,0 +1,10 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/product_types.xsd">
+    <type name="giftbox"
+          label="Gift Box Product"
+          modelInstance="BroSolutions\GiftBox\Model\Product\Type\GiftBox"
+          indexPriority="60"
+          sortOrder="80"
+          isQty="true">
+<!--        <priceModel instance="BroSolutions\GiftBox\Model\Product\Type\Price" />-->
+    </type>
+</config>
